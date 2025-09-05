@@ -2,7 +2,7 @@
 /*
 Plugin Name: SportScoreX - Ultimate Sports Stats & Widgets
 Description: Modern sports statistics plugin with live scores, widgets, and comprehensive coverage. Built for 2025 with latest WordPress standards.
-Version: 2.0.1
+Version: 2.0.2
 Author: mo-sawah
 Requires at least: 6.3
 Tested up to: 6.7
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'SPORTSCOREX_VERSION', '2.0.1' );
+define( 'SPORTSCOREX_VERSION', '2.0.2' );
 define( 'SPORTSCOREX_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'SPORTSCOREX_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SPORTSCOREX_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );

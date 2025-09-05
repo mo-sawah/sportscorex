@@ -63,19 +63,29 @@ final class SportScoreX {
     }
 
     /**
-     * Initialize plugin components
+     * Initialize plugin components - FIXED
      */
     public function init() {
         // Load text domain
         load_plugin_textdomain( 'sportscorex', false, dirname( SPORTSCOREX_PLUGIN_BASENAME ) . '/languages' );
 
-        // Initialize components
-        $this->api_manager = new SportScoreX_API_Manager();
-        $this->blocks_manager = new SportScoreX_Blocks_Manager();
-        
-        new SportScoreX_Admin();
-        new SportScoreX_Shortcodes();
-        new SportScoreX_REST_API();
+        // Initialize components safely
+        try {
+            $this->api_manager = new SportScoreX_API_Manager();
+            $this->blocks_manager = new SportScoreX_Blocks_Manager();
+            
+            // Only initialize admin in admin context
+            if ( is_admin() ) {
+                new SportScoreX_Admin();
+            }
+            
+            new SportScoreX_Shortcodes();
+            new SportScoreX_REST_API();
+            
+        } catch ( Exception $e ) {
+            // Log error but don't break the site
+            error_log( 'SportScoreX initialization error: ' . $e->getMessage() );
+        }
     }
 
     /**

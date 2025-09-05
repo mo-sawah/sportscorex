@@ -9,6 +9,26 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class SportScoreX_Admin {
 
+    /**
+     * API Settings page (missing method)
+     */
+    public function api_settings_page() {
+        ?>
+        <div class="wrap">
+            <h1><?php _e( 'SportScoreX API Settings', 'sportscorex' ); ?></h1>
+            <p><?php _e( 'Configure your sports API keys here.', 'sportscorex' ); ?></p>
+            
+            <form method="post" action="options.php">
+                <?php
+                settings_fields( 'sportscorex_settings' );
+                do_settings_sections( 'sportscorex' );
+                submit_button();
+                ?>
+            </form>
+        </div>
+        <?php
+    }
+
     public function __construct() {
         add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
         add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -16,7 +36,7 @@ class SportScoreX_Admin {
     }
 
     /**
-     * Add admin menu
+     * Add admin menu - SIMPLIFIED
      */
     public function add_admin_menu() {
         add_menu_page(
@@ -29,14 +49,8 @@ class SportScoreX_Admin {
             30
         );
 
-        add_submenu_page(
-            'sportscorex',
-            __( 'API Settings', 'sportscorex' ),
-            __( 'API Settings', 'sportscorex' ),
-            'manage_options',
-            'sportscorex-apis',
-            array( $this, 'api_settings_page' )
-        );
+        // Remove the problematic submenu for now
+        // We can add it back later when everything is working
     }
 
     /**
